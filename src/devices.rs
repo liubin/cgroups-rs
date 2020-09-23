@@ -1,3 +1,8 @@
+// Copyright (c) 2018 Levente Kurusa
+//
+// SPDX-License-Identifier: Apache-2.0 or MIT
+//
+
 //! This module contains the implementation of the `devices` cgroup subsystem.
 //!
 //! See the Kernel's documentation for more information about this subsystem, found at:
@@ -7,8 +12,8 @@ use std::path::PathBuf;
 
 use log::*;
 
-use crate::error::*;
 use crate::error::ErrorKind::*;
+use crate::error::*;
 
 use crate::{
     ControllIdentifier, ControllerInternal, Controllers, DeviceResource, DeviceResources,
@@ -124,8 +129,7 @@ impl DevicePermissions {
             return Ok(v);
         }
         for e in s.chars() {
-            let perm = DevicePermissions::from_char(e)
-                .ok_or_else(|| Error::new(ParseError))?;
+            let perm = DevicePermissions::from_char(e).ok_or_else(|| Error::new(ParseError))?;
             v.push(perm);
         }
 
